@@ -1,0 +1,4 @@
+---
+# default vars
+boot: no
+host: "juanvi"

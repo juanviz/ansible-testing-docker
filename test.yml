@@ -1,0 +1,22 @@
+---
+- name: Bring up docker containers
+  hosts: localhost
+  gather_facts: false
+  vars:
+    inventory:
+      - name: minecraft_host_1
+        image: "ubuntu-upstart:14.04"
+  roles:
+    - { role: provision_docker, provision_docker_inventory: "{{inventory}}" }
+
+
+- hosts: docker_containers
+  roles:
+    - yauh.java8
+    - minecraft
+  vars:
+    minecraft_user: root
+    minecraft_server: minecraft_server.1.9.2.jar
+    max_player: 20
+    distance: 10
+    memory: 678
